@@ -1,5 +1,7 @@
 # Workbench Themes
 
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.tomarkar/workbench-themes)](https://central.sonatype.com/artifact/io.github.tomarkar/workbench-themes)
+
 Two [AtlantaFX](https://github.com/mkpaz/atlantafx) themes, **Workbench Dark** and **Workbench Light**, based on
 the color palettes of the IntelliJ themes from
 [Familiar Java Themes](https://gitlab.com/zerodind/familiar-java-themes).
@@ -9,27 +11,22 @@ The colors (backgrounds, foreground, selection, borders, links, status and synta
 
 | AtlantaFX variable | Dark | Light |
 | --- | --- | --- |
-| `-color-bg-default` (tool window / panel) | `#3C3F41` | `#F2F2F2` |
-| `-color-bg-inset` (editors, inputs, lists) | `#2B2B2B` | `#FFFFFF` |
-| `-color-fg-default` | `#BBBBBB` | `#000000` |
-| `-color-accent-emphasis` (selection) | `#2F65CA` | `#2675BF` |
-| `-color-accent-fg` (links) | `#589DF6` | `#006DCC` |
-| `-color-success-emphasis` | `#629755` | `#0A7700` |
-| `-color-warning-emphasis` | `#F49810` | `#D1820E` |
-| `-color-danger-emphasis` | `#BC3F3C` | `#CD0000` |
+| `-color-bg-default` (tool window / panel) | `#3C3F41` ![](docs/colors/3C3F41.svg) | `#F2F2F2` ![](docs/colors/F2F2F2.svg) |
+| `-color-bg-inset` (editors, inputs, lists) | `#2B2B2B` ![](docs/colors/2B2B2B.svg) | `#FFFFFF` ![](docs/colors/FFFFFF.svg) |
+| `-color-fg-default` | `#BBBBBB` ![](docs/colors/BBBBBB.svg) | `#000000` ![](docs/colors/000000.svg) |
+| `-color-accent-emphasis` (selection) | `#2F65CA` ![](docs/colors/2F65CA.svg) | `#2675BF` ![](docs/colors/2675BF.svg) |
+| `-color-accent-fg` (links) | `#589DF6` ![](docs/colors/589DF6.svg) | `#006DCC` ![](docs/colors/006DCC.svg) |
+| `-color-success-emphasis` | `#629755` ![](docs/colors/629755.svg) | `#0A7700` ![](docs/colors/0A7700.svg) |
+| `-color-warning-emphasis` | `#F49810` ![](docs/colors/F49810.svg) | `#D1820E` ![](docs/colors/D1820E.svg) |
+| `-color-danger-emphasis` | `#BC3F3C` ![](docs/colors/BC3F3C.svg) | `#CD0000` ![](docs/colors/CD0000.svg) |
 
 The remaining steps of each color scale (`-color-base-*`, `-color-accent-*`, ...) are interpolated around these
 anchor colors. The chart colors use the syntax colors of the respective theme.
 
 ## Usage
 
-The library is not published to Maven Central. Build and install it into your local Maven repository:
-
-```
-mvn install
-```
-
-Then add it as a dependency (JavaFX itself must be provided by your application):
+The library is available on [Maven Central](https://central.sonatype.com/artifact/io.github.tomarkar/workbench-themes).
+Add it as a dependency (JavaFX itself must be provided by your application):
 
 ```xml
 <dependency>
@@ -37,6 +34,12 @@ Then add it as a dependency (JavaFX itself must be provided by your application)
     <artifactId>workbench-themes</artifactId>
     <version>1.0.0</version>
 </dependency>
+```
+
+For Gradle:
+
+```
+implementation("io.github.tomarkar:workbench-themes:1.0.0")
 ```
 
 and set the theme:
@@ -66,6 +69,8 @@ downloaded automatically):
 ```
 mvn package
 ```
+
+Use `mvn install` to install a locally built version into your local Maven repository.
 
 The theme sources are located in `src/scss/`. Use `mvn compile -Dsass.watch` to recompile them on change.
 

@@ -1,5 +1,8 @@
 /target
 
+# Private notes
+/docs/RELEASING.md
+
 # IDE
 .vscode/
 .idea/
