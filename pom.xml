@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.tomarkar</groupId>
+    <artifactId>workbench-themes</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0</version>
+    <name>Workbench Themes</name>
+    <description>Workbench Dark and Workbench Light themes for AtlantaFX</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
+
+        <atlantafx.version>3.0.0</atlantafx.version>
+
+        <scss.inputDir>${project.basedir}/src/scss</scss.inputDir>
+        <!-- compiled stylesheets end up on the classpath of the jar -->
+        <css.outputDir>${project.build.outputDirectory}/io/github/tomarkar/workbench</css.outputDir>
+    </properties>
+
+    <dependencies>
+        <!-- Theme interface -->
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+            <version>${atlantafx.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- stable module name for JPMS consumers -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>io.github.tomarkar.workbench</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- unpack SASS sources from atlantafx-styles jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.11.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>io.github.mkpaz</groupId>
+                                    <artifactId>atlantafx-styles</artifactId>
+                                    <version>${atlantafx.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- compile both themes -->
+            <plugin>
+                <groupId>us.hebi.sass</groupId>
+                <artifactId>sass-cli-maven-plugin</artifactId>
+                <version>1.0.4</version>
+                <configuration>
+                    <args>
+                        <arg>${scss.inputDir}/workbench-dark.scss:${css.outputDir}/workbench-dark.css</arg>
+                        <arg>${scss.inputDir}/workbench-light.scss:${css.outputDir}/workbench-light.css</arg>
+                        <arg>--no-source-map</arg>
+                    </args>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run-sass</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

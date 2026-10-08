@@ -1,0 +1,210 @@
+// SPDX-License-Identifier: MIT
+
+@use "sass:color";
+@use "../../target/atlantafx/styles/settings/utils" as utils;
+
+// Workbench Dark color palette, based on the IntelliJ Dark (Darcula) palette.
+// All values are taken from "intellij-dark-color-theme.json" of the
+// Familiar Java Themes project (https://gitlab.com/zerodind/familiar-java-themes).
+$wb-fg:                  #bbbbbb; // foreground
+$wb-editor-fg:           #a9b7c6; // editor.foreground
+$wb-editor-bg:           #2b2b2b; // editor.background
+$wb-panel-bg:            #3c3f41; // panel.background
+$wb-gutter-bg:           #313335; // editorGutter.background
+$wb-tab-active-bg:       #4e5254; // tab.activeBackground
+$wb-hover-bg:            #4c5052; // statusBarItem.hoverBackground
+$wb-widget-bg:           #46484a; // editorSuggestWidget.background
+$wb-widget-border:       #565656; // editorSuggestWidget.border
+$wb-border:              #515151; // menu.border
+$wb-border-dark:         #323232; // panel.border
+$wb-comment:             #808080; // comment
+$wb-line-number:         #606366; // editorLineNumber.foreground
+$wb-line-number-active:  #a4a3a3; // editorLineNumber.activeForeground
+$wb-selection:           #2f65ca; // list.activeSelectionBackground
+$wb-selection-inactive:  #0d293e; // list.inactiveSelectionBackground
+$wb-selection-widget:    #113a5c; // editorSuggestWidget.selectedBackground
+$wb-link:                #589df6; // textLink.foreground
+$wb-tab-border:          #4a88c7; // tab.activeBorder
+$wb-success:             #629755; // gitDecoration.addedResourceForeground
+$wb-warning:             #f49810; // editorWarning.foreground
+$wb-error:               #bc3f3c; // editorError.foreground
+
+// Syntax colors, used for the chart palette.
+$wb-keyword:             #cc7832;
+$wb-method:              #ffc66d;
+$wb-string:              #6a8759;
+$wb-number:              #6897bb;
+$wb-field:               #9876aa;
+$wb-type-param:          #507874;
+
+@forward "../../target/atlantafx/styles/settings/color-scale" with (
+
+  $dark:      #1f1f1f,
+  $light:     #ffffff,
+
+  $base-0:    #d7d7d7,
+  $base-1:    $wb-fg,
+  $base-2:    $wb-line-number-active,
+  $base-3:    $wb-comment,
+  $base-4:    $wb-line-number,
+  $base-5:    $wb-tab-active-bg,
+  $base-6:    $wb-widget-bg,
+  $base-7:    $wb-panel-bg,
+  $base-8:    $wb-editor-bg,
+  $base-9:    #1f1f1f,
+
+  $accent-0:  #dcebfd,
+  $accent-1:  #b0d2fa,
+  $accent-2:  #84b8f8,
+  $accent-3:  $wb-link,
+  $accent-4:  $wb-tab-border,
+  $accent-5:  $wb-selection,
+  $accent-6:  #2756ac,
+  $accent-7:  #1d4b8f,
+  $accent-8:  $wb-selection-widget,
+  $accent-9:  $wb-selection-inactive,
+
+  $success-0: #ecf3eb,
+  $success-1: #d1e0cd,
+  $success-2: #b5ceaf,
+  $success-3: #99bc91,
+  $success-4: #7ea973,
+  $success-5: $wb-success,
+  $success-6: #507c46,
+  $success-7: #3f6136,
+  $success-8: #2d4527,
+  $success-9: #1b2a18,
+
+  $warning-0: #fef3e2,
+  $warning-1: #fce1b8,
+  $warning-2: #face8e,
+  $warning-3: #f8bc64,
+  $warning-4: #f6aa3a,
+  $warning-5: $wb-warning,
+  $warning-6: #c87d0d,
+  $warning-7: #9c610a,
+  $warning-8: #704607,
+  $warning-9: #442b04,
+
+  $danger-0:  #f7e8e8,
+  $danger-1:  #ebc6c5,
+  $danger-2:  #dfa4a3,
+  $danger-3:  #d48381,
+  $danger-4:  #c8615e,
+  $danger-5:  $wb-error,
+  $danger-6:  #9a3431,
+  $danger-7:  #782826,
+  $danger-8:  #561d1c,
+  $danger-9:  #351211
+);
+
+@use "../../target/atlantafx/styles/settings/color-scale" as scale;
+
+@forward "../../target/atlantafx/styles/settings/color-vars" with (
+
+  $fg-default:           scale.$base-1,
+  $fg-muted:             scale.$base-2,
+  $fg-subtle:            scale.$base-3,
+  $fg-onEmphasis:        scale.$light,
+
+  // tool window / panel background, editors and inputs use the inset color
+  $canvas-default:       scale.$base-7,
+  $canvas-overlay:       scale.$base-7,
+  $canvas-inset:         scale.$base-8,
+  $canvas-subtle:        scale.$base-6,
+
+  $border-default:       $wb-widget-border,
+  $border-muted:         $wb-border,
+  $border-subtle:        $wb-border-dark,
+  $shadow-default:       scale.$dark,
+
+  $neutral-emphasisPlus: scale.$base-3,
+  $neutral-emphasis:     scale.$base-4,
+  $neutral-muted:        utils.flattenColor(scale.$base-7, color.change(scale.$base-4, $alpha: 0.4)),
+  $neutral-subtle:       utils.flattenColor(scale.$base-7, color.change(scale.$base-4, $alpha: 0.15)),
+
+  $accent-fg:            scale.$accent-3,
+  $accent-emphasis:      scale.$accent-5,
+  $accent-muted:         color.change(scale.$accent-4, $alpha: 0.4),
+  $accent-subtle:        scale.$accent-8,
+
+  $success-fg:           scale.$success-4,
+  $success-emphasis:     scale.$success-5,
+  $success-muted:        color.change(scale.$success-5, $alpha: 0.4),
+  $success-subtle:       color.change(scale.$success-5, $alpha: 0.15),
+
+  $warning-fg:           scale.$warning-4,
+  $warning-emphasis:     scale.$warning-5,
+  $warning-muted:        color.change(scale.$warning-5, $alpha: 0.4),
+  $warning-subtle:       color.change(scale.$warning-5, $alpha: 0.15),
+
+  $danger-fg:            scale.$danger-3,
+  $danger-emphasis:      scale.$danger-5,
+  $danger-muted:         color.change(scale.$danger-5, $alpha: 0.4),
+  $danger-subtle:        color.change(scale.$danger-5, $alpha: 0.15),
+
+  $chart-1:              $wb-keyword,
+  $chart-2:              $wb-method,
+  $chart-3:              $wb-string,
+  $chart-4:              $wb-type-param,
+  $chart-5:              $wb-number,
+  $chart-6:              $wb-field,
+  $chart-7:              $wb-error,
+  $chart-8:              $wb-comment
+);
+
+@forward "../../target/atlantafx/styles/settings/config" with (
+  $darkMode:      true,
+  $border-radius: 3px,
+  $popup-radius:  3px
+);
+
+@use "../../target/atlantafx/styles/general";
+
+@forward "../../target/atlantafx/styles/components/button" as button-* with (
+  $color-bg-hover: -color-base-5
+);
+
+@forward "../../target/atlantafx/styles/components/combo-box" as combo-box-* with (
+  $color-list-bg-hover:    -color-accent-emphasis,
+  $color-list-bg-selected: -color-accent-emphasis,
+  $color-list-fg-hover:    -color-fg-emphasis,
+  $color-list-fg-selected: -color-fg-emphasis
+);
+
+@forward "../../target/atlantafx/styles/components/data" as data-* with (
+  $color-cell-bg:                  -color-bg-inset,
+  $color-cell-bg-odd:              $wb-gutter-bg,
+  $color-cell-bg-selected:         -color-accent-9,
+  $color-cell-fg-selected:         -color-fg-default,
+  $color-cell-bg-selected-focused: -color-accent-emphasis,
+  $color-cell-fg-selected-focused: -color-fg-emphasis
+);
+
+@forward "../../target/atlantafx/styles/components/menu" as menu-* with (
+  $color-menuitem-bg-hover: -color-accent-emphasis,
+  $color-menuitem-fg-hover: -color-fg-emphasis,
+  $color-menubar-bg-hover:  $wb-hover-bg
+);
+
+@forward "../../target/atlantafx/styles/components/tab-line" as tab-line-* with (
+  $color-border-selected: -color-accent-4
+);
+
+@forward "../../target/atlantafx/styles/components/tab-pane" as tab-pane-* with (
+  $color-lr-bg-selected:     $wb-tab-active-bg,
+  $color-tb-border-selected: -color-accent-4
+);
+
+@forward "../../target/atlantafx/styles/components/text-input" as text-input-* with (
+  $color-bg:           -color-bg-inset,
+  $color-bg-focused:   -color-bg-inset,
+  $color-bg-highlight: -color-accent-8
+);
+
+@forward "../../target/atlantafx/styles/components/toolbar" as toolbar-* with (
+  $color-bg-hover:    $wb-hover-bg,
+  $color-bg-selected: $wb-tab-active-bg
+);
+
+@use "../../target/atlantafx/styles/components";
