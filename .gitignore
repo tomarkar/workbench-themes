@@ -3,6 +3,9 @@
 # Private notes
 /docs/RELEASING.md
 
+# Local tests and demos
+/src/test/
+
 # IDE
 .vscode/
 .idea/

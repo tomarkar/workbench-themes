@@ -179,8 +179,9 @@ $wb-type-param:          #007e8a;
 );
 
 @forward "../../target/atlantafx/styles/components/menu" as menu-* with (
-  $color-menuitem-bg-hover: -color-accent-emphasis,
-  $color-menuitem-fg-hover: -color-fg-emphasis,
+  // 50% selection over the menu background, so embedded icons stay legible
+  $color-menuitem-bg-hover: utils.flattenColor(scale.$base-1, color.change($wb-selection, $alpha: 0.5)),
+  $color-menuitem-fg-hover: -color-fg-default,
   $color-menubar-bg-hover:  $wb-hover-bg
 );
 

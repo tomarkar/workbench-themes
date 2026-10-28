@@ -32,14 +32,14 @@ Add it as a dependency (JavaFX itself must be provided by your application):
 <dependency>
     <groupId>io.github.tomarkar</groupId>
     <artifactId>workbench-themes</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
 For Gradle:
 
 ```
-implementation("io.github.tomarkar:workbench-themes:1.0.0")
+implementation("io.github.tomarkar:workbench-themes:1.0.1")
 ```
 
 and set the theme:
