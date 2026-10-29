@@ -6,8 +6,21 @@ Two [AtlantaFX](https://github.com/mkpaz/atlantafx) themes, **Workbench Dark** a
 the color palettes of the IntelliJ themes from
 [Familiar Java Themes](https://gitlab.com/zerodind/familiar-java-themes).
 
+## Screenshots
+
+An example application with Workbench Dark:
+
+![Workbench Dark](docs/workbench-dark.png)
+
+The same application with Workbench Light:
+
+![Workbench Light](docs/workbench-light.png)
+
+## Colors
+
 The colors (backgrounds, foreground, selection, borders, links, status and syntax colors) are taken from
 `intellij-dark-color-theme.json` and `intellij-light-color-theme.json` and mapped onto the AtlantaFX color system.
+The main mappings:
 
 | AtlantaFX variable | Dark | Light |
 | --- | --- | --- |
@@ -21,7 +34,12 @@ The colors (backgrounds, foreground, selection, borders, links, status and synta
 | `-color-danger-emphasis` | `#BC3F3C` ![](docs/colors/BC3F3C.svg) | `#CD0000` ![](docs/colors/CD0000.svg) |
 
 The remaining steps of each color scale (`-color-base-*`, `-color-accent-*`, ...) are interpolated around these
-anchor colors. The chart colors use the syntax colors of the respective theme.
+anchor colors. The only anchor that is not taken from the JSON is the warning color of Workbench Light:
+`editorWarning.foreground` (`#F49810`) is placed at `-color-warning-4`, and the darker, interpolated step
+`#D1820E` is used for `-color-warning-emphasis`.
+
+The chart colors (`-color-chart-1` to `-color-chart-8`) mainly use the syntax colors of the respective theme,
+completed by the error, comment and (in Workbench Light) warning colors.
 
 ## Usage
 
@@ -83,6 +101,10 @@ sass --no-source-map src/scss/workbench-light.scss workbench-light.css
 ```
 
 The deprecation warnings printed during the build originate from the AtlantaFX sources and can be ignored.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for the changes of each release.
 
 ## License
 
